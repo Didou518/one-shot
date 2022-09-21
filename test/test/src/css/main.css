@@ -1,0 +1,65 @@
+.AB_modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 250ms ease-in, visibility 250ms ease-in;
+	z-index: 10;
+}
+.AB_modal.active {
+	opacity: 1;
+	visibility: visible;
+}
+.AB_modal-content {
+	background-color: #fff;
+	position: relative;
+	border-radius: 5px;
+	width: 100%;
+	max-width: 510px;
+	text-align: center;
+	padding: 30px;
+}
+.AB_modal-close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+}
+.AB_modal-close svg {
+	content: "";
+	display: block;
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	pointer-events: none;
+}
+.AB_modal-picture {
+	margin-bottom: 25px;
+	display: inline-block;
+	vertical-align: top;
+	min-height: 195px;
+}
+.AB_modal-title {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 700;
+	font-size: 20px;
+	margin-bottom: 15px;
+}
+.AB_modal-text {
+	font-family: "Montserrat", sans-serif;
+	font-size: 15px;
+	line-height: 22px;
+	margin-bottom: 20px;
+}

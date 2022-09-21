@@ -1,0 +1,36 @@
+{
+	"name": "one-shot",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"new": "ncp boilerplate",
+		"build": "node ./index.js --build --dir",
+		"start": "nodemon ./index.js --dir"
+	},
+	"keywords": [],
+	"author": "Pascal Saussier",
+	"license": "ISC",
+	"devDependencies": {
+		"@babel/core": "^7.19.1",
+		"@babel/preset-env": "^7.19.1",
+		"autoprefixer": "^10.4.12",
+		"chalk": "^5.0.1",
+		"chokidar": "^3.5.3",
+		"cssnano": "^5.1.13",
+		"html-minifier": "4.0.0",
+		"log-timestamp": "0.3.0",
+		"ncp": "2.0.0",
+		"nodemon": "^2.0.20",
+		"postcss": "^8.4.16",
+		"postcss-nested": "5.0.6",
+		"svgo": "^2.8.0",
+		"uglify-js": "^3.17.1",
+		"yargs": "^17.5.1"
+	},
+	"engines": {
+		"node": "16.13.0",
+		"npm": "8.1.0"
+	}
+}
