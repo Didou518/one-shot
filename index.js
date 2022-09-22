@@ -7,7 +7,10 @@ import chalk from "chalk";
 import chokidar from "chokidar";
 import plugins from "./src/plugins/index.js";
 
-import "log-timestamp";
+import patch from "log-timestamp";
+patch(() => {
+	return "[" + new Date().toLocaleString() + "]";
+});
 
 const argv = yargs(process.argv.slice(2)).argv;
 
@@ -21,33 +24,50 @@ if (!argv.dir || argv.dir === true) {
 const workingDirectory = argv.dir;
 
 // Sets the different paths needed to work
-const folderToWatch = path.resolve(workingDirectory, "src");
+const pathToSrcFiles = path.resolve(workingDirectory, "src");
 const pathToSource = path.resolve(workingDirectory);
 const pathToDist = path.resolve(workingDirectory, "dist");
 
 // If the build parameter is used, then no watch is required
 if (argv.build) {
 	computeDistFile();
-	console.log(chalk.green("File", pathToDist, "has been generated"));
 } else {
 	// If the build parameter is not setted
-	console.log(chalk.yellow(`Watching for file changes on ${folderToWatch}`));
-	const watcher = chokidar.watch(folderToWatch, {
-		ignored: /^\./,
+	console.log(chalk.cyan(`Watching for file changes on ${pathToSource}`));
+	const watcher = chokidar.watch(pathToSource, {
+		ignored: /\/dist\/.*/,
 		persistent: true,
 	});
 
 	watcher
 		.on("add", function (path) {
-			console.log(chalk.green("File", path, "has been added"));
+			console.log(
+				chalk.yellow(
+					"File",
+					path.replace(pathToSource, ""),
+					"has been added"
+				)
+			);
 			computeDistFile();
 		})
 		.on("change", function (path) {
-			console.log(chalk.green("File", path, "has been changed"));
+			console.log(
+				chalk.yellow(
+					"File",
+					path.replace(pathToSource, ""),
+					"has been changed"
+				)
+			);
 			computeDistFile();
 		})
 		.on("unlink", function (path) {
-			console.log(chalk.green("File", path, "has been removed"));
+			console.log(
+				chalk.yellow(
+					"File",
+					path.replace(pathToSource, ""),
+					"has been removed"
+				)
+			);
 			computeDistFile();
 		})
 		.on("error", function (error) {
@@ -82,8 +102,8 @@ function computeDistFile() {
 			fs.readFile(sourceFile, "utf8", async (err, sourceData) => {
 				if (err) throw err;
 
-				// Gets all files within the folderToWatch ie. workingDir/src
-				const files = getAllFilesFromDirectory(folderToWatch);
+				// Gets all files within the pathToSrcFiles ie. workingDir/src
+				const files = getAllFilesFromDirectory(pathToSrcFiles);
 
 				// Initiate the computedData with the original content
 				let computedData = sourceData;
@@ -125,6 +145,13 @@ function computeDistFile() {
 						function (err) {
 							if (err) throw err;
 						}
+					);
+					console.log(
+						chalk.green(
+							"File",
+							distFile.replace(pathToSource, ""),
+							"has been generated"
+						)
 					);
 				});
 			});

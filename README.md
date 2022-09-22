@@ -3,7 +3,7 @@
 ## Presentation
 
 The purpose of this tool is to ease the creation of small code.
-The concept behind it is to automatize all the file processing necessary for your dependencies (ie : CSS, JS and HTML files).
+The concept behind it is to automatize all the file processing necessary for your dependencies (ie : CSS, JS, SVG and HTML files).
 
 ## Install
 
@@ -30,19 +30,19 @@ This duplicates the content of the `boilerplate` template.
 You can ceate a directory manually that will contain your sources. The prerequisites are :
 
 -   a `src` subdirectory to contain your sources
--   all `src/type/name.type` files nécessary for your application (exemple: `src/css/main.css` or `src/html/modal.html`)
+-   all `src/type/name.type` files nécessary for your application (exemple: `src/css/main.css` or `src/html/test.html`)
 -   an empty `dist` subdirectory that will contain your dist version
 -   aLL `*.js` files you need in your directory that will be your source files for the test
 
 ## Development
 
-At the moment `css`, `svg` and `html` files are processed.  
+At the moment `css`, `js`, `svg` and `html` files are processed.  
 The `*.js` source files in your directory are processed by babel.
 
 ### Placeholders
 
 To use a processed file you have to specify the type and name of the file in the `*.js` source file in your directory with double accolades.  
-For example : `{{html/modal}}` will inject the minified html from the `src/html/modal.html` file.
+For example : `{{html/test}}` will inject the minified html from the `src/html/test.html` file.
 
 ### Command
 

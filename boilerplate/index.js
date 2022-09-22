@@ -1,26 +1,24 @@
-// Gets the modal minified template
-const modalTemplate = `{{html/modal}}`;
-// Insert said template in the DOM
-document
-	.querySelector(".page.bouquet")
-	.insertAdjacentHTML("beforeend", modalTemplate);
-// Get reference of the modal node
-const modal = document.querySelector(".AB_modal");
+// Gets the minified template
+let template = `{{html/test}}`;
+
 // Gets processed CSS
 const css = `{{css/main}}`;
+
+// Gets svg
+const svg = `{{svg/circle}}`;
+
+// Import JS
+{{js/test}}
+test()
+
+// Replace content in template
+template = template.replace("{{circle}}", svg);
+
+// Insert said template in the DOM
+document.querySelector("body").insertAdjacentHTML("beforeend", template);
+
 // Inject CSS in DOM
 const styleTag = document.createElement("style");
-styleTag.id = "AB_style";
+styleTag.id = "test_style";
 styleTag.innerHTML = css;
 document.querySelector("head").insertAdjacentElement("beforeend", styleTag);
-
-// Adds listener to close modal button
-modal.querySelector(".AB_modal-close").addEventListener("click", function(e) {
-	e.preventDefault();
-	modal.classList.remove("active");
-});
-
-// Opens modal after 1.5 seconds
-setTimeout(function() {
-	modal.classList.add("active");
-}, 1500);
