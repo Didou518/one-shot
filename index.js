@@ -131,24 +131,27 @@ function computeDistFile () {
 				babel.transform(computedData, (err, result) => {
 					if (err) throw err
 					// The dist file is written to disk
-					/**
-					* No minifier
-					*/
-					// fs.writeFile(distFile, result.code, "utf8", function(err) {
-					// 	if (err) throw err;
-					// });
-
-					/**
-					* With minifier
-					*/
-					fs.writeFile(
-						distFile,
-						UglifyJS.minify(result.code).code,
-						'utf8',
-						function (err) {
+					if (argv.debug) {
+						/**
+						* No minifier
+						*/
+						fs.writeFile(distFile, result.code, 'utf8', function (err) {
 							if (err) throw err
-						}
-					)
+						})
+					} else {
+						/**
+						* With minifier
+						*/
+						fs.writeFile(
+							distFile,
+							UglifyJS.minify(result.code).code,
+							'utf8',
+							function (err) {
+								if (err) throw err
+							}
+						)
+					}
+
 					console.log(
 						chalk.green(
 							'File',

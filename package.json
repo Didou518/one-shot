@@ -7,7 +7,9 @@
 	"scripts": {
 		"new": "ncp boilerplate",
 		"build": "node ./index.js --build --dir",
-		"start": "nodemon ./index.js --dir"
+		"start": "nodemon ./index.js --dir",
+		"start:debug": "nodemon ./index.js --debug --dir ",
+		"test:eslint": "eslint ."
 	},
 	"keywords": [],
 	"author": "Pascal Saussier",
