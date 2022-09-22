@@ -5,11 +5,9 @@
  * @param {String} fileName The name of the file to be inserted
  * @param {String} content The processed content of the file that will be inserted
  */
-function replaceContent(data, fileName, fileExt, content) {
+function replaceContent (data, fileName, fileExt, content) {
 	return data.replace(
-		new RegExp(`{{${fileExt}/${fileName}}}`, "g"),
-		`${content}`
-	);
+		new RegExp(`{{${fileExt}/${fileName}}}`, 'g'), `${content}`)
 }
 
-export default replaceContent;
+export default replaceContent

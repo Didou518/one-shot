@@ -1,6 +1,6 @@
-import fs from "fs";
-import { optimize } from "svgo";
-import replaceContent from "../../replace-content.js";
+import fs from 'fs'
+import { optimize } from 'svgo'
+import replaceContent from '../../replace-content.js'
 
 /**
  * Handles SVG files processing
@@ -8,9 +8,9 @@ import replaceContent from "../../replace-content.js";
  * @param {String} file The absolute path of the file to be processed
  * @param {String} fileName The fileName of the file to be replaced in source file
  */
-async function handleSvgFile(data, file, fileName, fileExt) {
-	const response = await getSvgOutput(file);
-	return replaceContent(data, fileName, fileExt, response);
+async function handleSvgFile (data, file, fileName, fileExt) {
+	const response = await getSvgOutput(file)
+	return replaceContent(data, fileName, fileExt, response)
 }
 
 /**
@@ -18,15 +18,19 @@ async function handleSvgFile(data, file, fileName, fileExt) {
  *
  * @param {String} filePath
  */
-function getSvgOutput(filePath) {
+function getSvgOutput (filePath) {
 	return new Promise((resolve, reject) => {
-		fs.readFile(filePath, "utf8", (err, svg) => {
+		fs.readFile(filePath, 'utf8', (err, svg) => {
+			if (err) {
+				reject(err)
+			}
+
 			const result = optimize(svg, {
-				path: filePath,
-			});
-			resolve(result.data);
-		});
-	});
+				path: filePath
+			})
+			resolve(result.data)
+		})
+	})
 }
 
-export { handleSvgFile };
+export { handleSvgFile }

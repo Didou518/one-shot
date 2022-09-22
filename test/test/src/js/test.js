@@ -1,3 +1,4 @@
-function test() {
-	console.log("test");
+/* eslint-disable no-unused-vars */
+function test () {
+	console.log('test')
 }
