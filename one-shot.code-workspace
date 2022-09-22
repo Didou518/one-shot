@@ -1,0 +1,31 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "emmet.includeLanguages": {
+            "postcss": "css"
+        },
+        "emmet.syntaxProfiles": {
+            "postcss": "css"
+        },
+        "files.associations": {
+            "*.css": "postcss"
+        },
+        "files.trimTrailingWhitespace": true,
+        "search.exclude": {
+            "**/node_modules": true
+        },
+        "editor.codeActionsOnSave": {
+            "source.fixAll": true,
+        },
+    },
+    "extensions": {
+        "recommendations": [
+            "dbaeumer.vscode-eslint",
+            "stylelint.vscode-stylelint"
+        ]
+    }
+}
