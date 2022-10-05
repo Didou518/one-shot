@@ -28,6 +28,15 @@ const pathToSrcFiles = path.resolve(workingDirectory, 'src')
 const pathToSource = path.resolve(workingDirectory)
 const pathToDist = path.resolve(workingDirectory, 'dist')
 
+// If directories does not exist create them
+if (!fs.existsSync(pathToSource)) {
+	fs.mkdirSync(pathToSource)
+}
+
+if (!fs.existsSync(pathToDist)) {
+	fs.mkdirSync(pathToDist)
+}
+
 // If the build parameter is used, then no watch is required
 if (argv.build) {
 	computeDistFile()
